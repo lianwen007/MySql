@@ -1,5 +1,5 @@
-#跨班级用户，包含教师学生
 SELECT
+	#跨班级用户，包含教师学生
 	sta1.userid,
 	sta3.sUserName,
 	sta1.schoolid,
