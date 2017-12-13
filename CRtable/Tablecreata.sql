@@ -109,6 +109,16 @@ CREATE TABLE `school_grade_user` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
+CREATE TABLE `school_area_name` (
+  `schoolid` int(20) NOT NULL,
+  `schoolname` varchar(200) DEFAULT NULL,
+  `areaname0` varchar(50) DEFAULT NULL,
+  `areaname1` varchar(100) DEFAULT NULL,
+  `areaname2` varchar(100) DEFAULT NULL,
+  `datetime` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`schoolid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE `school_grade_count` (
   `schoolid` varchar(200) DEFAULT NULL,
