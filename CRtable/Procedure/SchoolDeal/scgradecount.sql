@@ -1,7 +1,9 @@
+
 BEGIN
 
 delete from school_grade_count where datetime = adddate(date(sysdate()) ,-1);
 INSERT INTO school_grade_count (schoolid,schoolname,areaname0,areaname1,areaname2,gradeclass,gradenum,teanum,stunum,datetime)(
+#1222-增加年级后的入学年份	
 SELECT
 		st1.schoolid,
 		st1.schoolname,
@@ -9,9 +11,9 @@ SELECT
 		st1.areaname1,
 		st1.areaname2,
 		CASE
-		WHEN st1.gradeclass='7' THEN '7年级'
-		WHEN st1.gradeclass='8' THEN '8年级'
-		WHEN st1.gradeclass='9' THEN '9年级'
+		WHEN st1.gradeclass='7' THEN '7年级(2017级)'
+		WHEN st1.gradeclass='8' THEN '8年级(2016级)'
+		WHEN st1.gradeclass='9' THEN '9年级(2015级)'
 		ELSE st1.gradeclass END AS gradeclazz,
 		st2.gradenum,
 		st3.teanum,
