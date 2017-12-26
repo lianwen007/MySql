@@ -1,3 +1,5 @@
+#1226 加入刷题王3 king.yunzuoye.net
+
 BEGIN
 set @asql=concat(
 "
@@ -22,10 +24,12 @@ when (message LIKE '%osc.yunzuoye.net%')then substr(message,-5,5)
 when (message LIKE '%oet.yunzuoye.net%')then substr(message,-5,5)
 when (message LIKE '%wcc.yunzuoye.net%')then substr(message,-5,5)
 when (message LIKE '%isc.yunzuoye.net%')then substr(message,-5,5)
+when (message LIKE '%king.yunzuoye.net%')then substr(message,-5,5)
 else 0 end as userid,
 case 
 when local_addr='ztp.yunzuoye.net' then 'pingtai3'
 when local_addr='cloudwk.yunzuoye.net' then 'yunzuoye3'
+when local_addr='king.yunzuoye.net' then 'shuatiwang3'
 when local_addr='read.yunzuoye.net' then 'read'
 when local_addr='response.yunzuoye.net' then 'xiangying'
 when local_addr='osc.yunzuoye.net' then 'xiaowai'
@@ -44,7 +48,7 @@ FROM user_package",DATE_FORMAT(adddate(date(sysdate()) ,-1),'%Y%m%d')
 IN ('ztp.yunzuoye.net','cloudwk.yunzuoye.net',
 'read.yunzuoye.net','response.yunzuoye.net'
 ,'osc.yunzuoye.net','oet.yunzuoye.net','wcc.yunzuoye.net'
-,'isc.yunzuoye.net') or message LIKE '%interfaces%'
+,'isc.yunzuoye.net','king.yunzuoye.net') or message LIKE '%interfaces%'
 ) sta
 WHERE sta.userid RLIKE '^[1-9]' AND  sta.userid RLIKE '[0-9]$'
 )
