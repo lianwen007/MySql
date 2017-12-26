@@ -1,4 +1,4 @@
-#1226 加入刷题王3 king.yunzuoye.net
+#20171226 加入刷题王3 king.yunzuoye.net
 
 BEGIN
 set @asql=concat(
