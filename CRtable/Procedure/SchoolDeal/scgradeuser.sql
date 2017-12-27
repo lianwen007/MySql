@@ -1,7 +1,8 @@
 BEGIN
 delete from school_grade_user where datetime = adddate(date(sysdate()) ,-1);
 INSERT INTO school_grade_user(userid,schoolid,schoolname,gradename,teagrade,gradeclass,datetime)(
-#1222-增加2018级为7年级
+	#1226-调整2018判定
+	#1222-增加2018级为7年级
 SELECT
 	st.iUserId,
 	st.schoolId,
@@ -9,7 +10,8 @@ SELECT
 	st.gradename,
 	st.teagrade,
 	CASE
-	WHEN ((st.gradeclazz='2017' OR st.gradeclazz='2018') AND st.schoolId != '4652') THEN '7'
+	WHEN (st.gradeclazz='2018') THEN '7'
+	WHEN (st.gradeclazz='2017' AND st.schoolId != '4652') THEN '7'
 	WHEN (st.gradeclazz='2016') THEN '8'
 	WHEN (st.gradeclazz='2015') THEN '9'
 	ELSE '其他' END AS gradeclass,
