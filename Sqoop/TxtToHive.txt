@@ -1,0 +1,3 @@
+load data local inpath 'mgtest.txt' into table clouwwork;
+
+load data local inpath '/opt/mgtest/' into table xhelktest.user_product_cloudwk;
