@@ -1,4 +1,4 @@
-insert into user_product_cloudwk_count1(
+insert into user_product_cloudwk_count(
 userid,
 username,
 subject,
