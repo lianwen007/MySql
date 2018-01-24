@@ -1,4 +1,4 @@
-INSERT INTO xh_userfile.user_file_product(
+INSERT INTO xh_userfile.user_file_product1(
 userid,
 username,
 schoolid,
@@ -64,9 +64,9 @@ yingyu.rankeng,
 kexue.avgscore as scoresci,
 kexue.ranksci,
 CASE
-WHEN ((yuwen.rankchn+shuxue.rankmath+yingyu.rankeng+kexue.ranksci)>=3.2) THEN 1
-WHEN ((yuwen.rankchn+shuxue.rankmath+yingyu.rankeng+kexue.ranksci)>=2.4) THEN 4
-WHEN ((yuwen.rankchn+shuxue.rankmath+yingyu.rankeng+kexue.ranksci)>=1.6) THEN 3
+WHEN ((yuwen.rankchn+shuxue.rankmath+yingyu.rankeng+kexue.ranksci)>=3.1) THEN 1
+WHEN ((yuwen.rankchn+shuxue.rankmath+yingyu.rankeng+kexue.ranksci)>=2.2) THEN 4
+WHEN ((yuwen.rankchn+shuxue.rankmath+yingyu.rankeng+kexue.ranksci)>=1.3) THEN 3
 ELSE 2 END AS avgstatus,
 CASE
 WHEN (yystwcount.rightlv>=80 )THEN 1
