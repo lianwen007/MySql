@@ -1,4 +1,4 @@
-INSERT INTO xh_userfile.user_file_product1(
+INSERT INTO xh_userfile.user_file_product(
 userid,
 username,
 schoolid,
