@@ -1,3 +1,5 @@
+#20180131-增加packagename非空判定
+
 BEGIN
 delete from user_package_count where datetime = adddate(date(sysdate()) ,-1);
 INSERT INTO user_package_count(schoolid,schoolname,gradename,packagename,stunum,daystunum,weekstunum,monthstunum,teanum,dayteanum,weekteanum,monthteanum,datetime)(
@@ -115,6 +117,7 @@ LEFT JOIN (SELECT
 		user_alive_day a3
 	where UNIX_TIMESTAMP(a3.datetime)>=UNIX_TIMESTAMP(adddate(date(sysdate()) ,-7))
 	AND a3.schoolid NOT in ('0','900090009','3563','3618','4160','3614')
+	   AND a3.packagename IS NOT NULL
 	GROUP BY
 		a3.schoolid,
 		a3.schoolname,
@@ -135,6 +138,7 @@ LEFT JOIN (SELECT
 		user_alive_day a4
 	where UNIX_TIMESTAMP(a4.datetime)>=UNIX_TIMESTAMP(adddate(date(sysdate()) ,-30))
 	AND a4.schoolid NOT in ('0','900090009','3563','3618','4160','3614')
+	   AND a4.packagename IS NOT NULL
 	GROUP BY
 		a4.schoolid,
 		a4.schoolname,
