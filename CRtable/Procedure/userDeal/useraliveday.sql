@@ -1,3 +1,5 @@
+#20180131-增加packagename非空判定
+
 BEGIN
 delete from user_alive_day where datetime = adddate(date(sysdate()) ,-1);
 INSERT INTO user_alive_day(userid,packagename,schoolid,schoolname,gradename,datetime)(
@@ -47,5 +49,6 @@ LEFT JOIN xh_webmanage.XHSchool_Info a3 ON a3.iSchoolId = a4.schoolId
 		WHERE a4.departed='0'
 		) sta3 ON sta1.userId = sta3.teacherId) st 
 WHERE st.schoolid NOT in ('0','900090009','3563','3618','4160','3614')
+	AND st.packagename IS NOT NULL
 );
 END
