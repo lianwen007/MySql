@@ -1,3 +1,6 @@
+#20180131-增加packagename非空判定
+
+
 BEGIN
 delete from user_alive_count where datetime = adddate(date(sysdate()) ,-1);
 INSERT INTO user_alive_count(schoolid,schoolname,gradename,daynewuser,stunum,daystunum,weekstunum,monthstunum,teanum,dayteanum,weekteanum,monthteanum,datetime)(
@@ -138,6 +141,7 @@ AND sta1.gradename = sta3.gradename
 			)
 		AND 
 			a3.schoolid NOT in ('0','900090009','3563','3618','4160','3614')
+		AND a3.packagename IS NOT NULL
 		GROUP BY
 			a3.schoolid,
 			a3.schoolname,
@@ -169,6 +173,7 @@ AND sta1.gradename = sta3.gradename
 			)
 		AND 
 			a4.schoolid NOT in ('0','900090009','3563','3618','4160','3614')
+		AND a4.packagename IS NOT NULL
 		GROUP BY
 			a4.schoolid,
 			a4.schoolname,
