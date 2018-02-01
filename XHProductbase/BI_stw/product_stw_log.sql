@@ -24,7 +24,7 @@ from_unixtime(unix_timestamp()-60*60*24*1,'yyyy-MM-dd') AS `datetime`
 FROM
 product_stw_base a1
 WHERE
-a1.udatetime > unix_timestamp(from_unixtime(unix_timestamp()-60*60*24*1,'yyyy-MM-dd 00:00:00'))
+a1.udatetime > unix_timestamp(from_unixtime(unix_timestamp()-60*60*24*0,'yyyy-MM-dd'),'yyyy-MM-dd')
 GROUP BY
 a1.userid,
 a1.username,
