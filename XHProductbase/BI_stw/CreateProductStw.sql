@@ -9,11 +9,64 @@ hp int,
 credit int,
 bookname string,
 bookid string,
+id string,
+createtime bigint,
+updatetime bigint,
+judgecount int,
 newintegral float,
 ishomework int,
 rightnum int,
 timecost int,
 udatetime bigint)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE;
+
+
+create table product_stw_kpibase(
+homeworkid string,
+createtime bigint,
+userid int,
+teacherid int,
+bookid string,
+gamecount int,
+finishcount int,
+isfinish int,
+updatetime bigint)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE;
+
+
+create table product_stw_subject(
+bookid string,
+bookname string,
+subjectid int,
+subtype int,
+updatetime bigint)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE;
+
+
+create table product_stw_base_day(
+username string,
+userid bigint,
+classname string,
+classid int,
+schoolname string,
+schoolid bigint,
+hp int,
+credit int,
+bookname string,
+bookid string,
+id string,
+newintegral float,
+ishomework int,
+rightnum int,
+timecost int,
+datetime string,
+datauptime string)
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY '\t'
 STORED AS TEXTFILE;
@@ -37,7 +90,8 @@ numtopic int,
 sumright int,
 rightlv float,
 sumtime int,
-datetime string)
+datetime string,
+datauptime string)
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY '\t'
 STORED AS TEXTFILE;
