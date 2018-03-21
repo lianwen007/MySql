@@ -5,7 +5,7 @@ from_unixtime(unix_timestamp()-60*60*24*0,'yyyyMMdd') AS uptime
 FROM teacher_info_stunum a3
 LEFT JOIN
 (SELECT sta1.teacherid,sta1.subjectid,sta3.zilnum,sta1.counthw,sta1.countgame,
-sta2.finsum/sta2.allfin AS finrate,sta2.gamefin/sta2.gamesum AS taskrate,sta1.datetime FROM
+sta2.allfin AS taskrate,sta2.finsum AS finrate,sta1.datetime FROM
 (SELECT a1.teacherid,a3.subjectid,a1.datetime,
 count(a1.homeworkid) AS counthw,SUM(a1.gamecount) AS countgame
 FROM(SELECT DISTINCT teacherid,bookid,homeworkid,gamecount,
