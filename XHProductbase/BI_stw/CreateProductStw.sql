@@ -119,3 +119,24 @@ datetime string)
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY '\t'
 STORED AS TEXTFILE;
+
+
+
+create table product_stw_kpicount(
+teacherid bigint,
+teachername string,
+classid int,
+classname string,
+schoolid bigint,
+studentnum bigint,
+subjectid int,
+zilnum int,
+counthw int,
+countgame int,
+finrate float,
+taskrate float,
+datetime bigint,
+uptime bigint)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE;
