@@ -48,7 +48,9 @@ a3.bookid,
 FROM_UNIXTIME(a3.createtime,'yyyy-MM-dd') AS datetime,
 SUM(IF(a3.ishomework = 0,1,0)) AS sumhomework,
 SUM(IF(a3.ishomework != 0,1,0)) AS sumselfwork,
-COUNT(a3.ishomework)*10 AS numtopic,
+CASE WHEN a3.subtype = 2 THEN COUNT(a3.ishomework)*10
+WHEN a3.subtype = 1 THEN (COUNT(a3.ishomework)*10 - SUM(IF(a3.judgecount>0,a3.judgecount,0))) 
+END AS numtopic,
 SUM(a3.rightnum) AS sumright,
 AVG(a3.judgecount)AS engrightrate,
 SUM(a3.timecost) AS sumtime,
