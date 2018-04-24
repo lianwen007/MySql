@@ -136,3 +136,89 @@ WHERE sta3.datetime>=from_unixtime(unix_timestamp()-60*60*24*1,'yyyyMMdd'))tab1
 LEFT JOIN teacher_info_stunum tab3 ON tab1.classid=tab3.classid AND tab1.teacherid=tab3.teacherid
 GROUP BY tab1.teacherid,tab1.teachername,tab1.classid,tab1.classname,tab1.schoolid,
 tab1.schoolname,tab1.subjectid, tab1.datetime,tab3.studentnum;
+
+TRUNCATE TABLE product_stw_encount;
+SELECT s1.userid,s2.username,s2.schoolid,s2.classid,s2.classname,
+SUM(s1.gamecounts)AS gamecount,
+SUM(s1.finishcounts)AS fincount,
+SUM(s1.homefullcounts)AS homefull,
+SUM(s1.selfcounts)AS selfcount,
+SUM(s1.selffullcounts)AS selffull,
+SUM(NVL(s1.listenfull,0))AS listenfull,
+SUM(NVL(s1.readfull,0))AS readfull,
+SUM(NVL(s1.wanxinfull,0))AS blankfull,
+AVG(NVL(s1.listenrate,0))AS ratelisten,
+AVG(NVL(s1.readrate,0))AS rateread,
+AVG(NVL(s1.wanxinrate,0))AS rateblank,
+SUM(NVL(s1.listennum,0))AS numlisten,
+SUM(NVL(s1.readnum,0))AS numread,
+SUM(NVL(s1.wanxinnum,0))AS numblank,
+s1.datetime
+FROM(
+SELECT stabl1.userid,stabl1.bookid,stabl1.typeen,stabl1.datetime,
+SUM(stabl1.gamect)AS gamecounts,
+SUM(stabl1.finishct)AS finishcounts, 
+SUM(NVL(stabl1.homefullct,0))AS homefullcounts,
+SUM(stabl1.selfct)AS selfcounts,
+SUM(NVL(stabl1.selffullct,0))AS selffullcounts,
+CASE WHEN stabl1.typeen = '9' THEN
+(SUM(NVL(stabl1.homefullct,0))+SUM(NVL(stabl1.selffullct,0))) END AS listenfull,
+CASE WHEN stabl1.typeen = '7' THEN
+(SUM(NVL(stabl1.homefullct,0))+SUM(NVL(stabl1.selffullct,0))) END AS readfull,
+CASE WHEN stabl1.typeen = '14' THEN
+(SUM(NVL(stabl1.homefullct,0))+SUM(NVL(stabl1.selffullct,0))) END AS wanxinfull,
+CASE WHEN stabl1.typeen = '9' THEN
+AVG(NVL(stabl1.avgallrate,0)) END AS listenrate,
+CASE WHEN stabl1.typeen = '7' THEN
+AVG(NVL(stabl1.avgallrate,0)) END AS readrate,
+CASE WHEN stabl1.typeen = '14' THEN
+AVG(NVL(stabl1.avgallrate,0)) END AS wanxinrate,
+CASE WHEN stabl1.typeen = '9' THEN
+SUM(NVL(stabl1.numall,0)) END AS listennum,
+CASE WHEN stabl1.typeen = '7' THEN
+SUM(NVL(stabl1.numall,0)) END AS readnum,
+CASE WHEN stabl1.typeen = '14' THEN
+SUM(NVL(stabl1.numall,0)) END AS wanxinnum
+FROM(
+SELECT stab1.userid,stab1.bookid,stab1.typeen,stab1.ishomewk,stab1.datetime,
+SUM(stab1.gamecount)AS gamect,
+SUM(stab1.finishcount)AS finishct,
+CASE WHEN stab1.ishomewk = '0' THEN 
+SUM(IF(stab1.judgecount='100',1,0)) END AS homefullct,
+SUM(IF(stab1.ishomewk=1,1,0))AS selfct,
+CASE WHEN stab1.ishomewk = '1' THEN 
+SUM(IF(stab1.judgecount='100',1,0)) END AS selffullct,
+AVG(stab1.judgecount) avgallrate,
+COUNT(stab1.ishomewk) numall
+FROM
+(SELECT sta0.id,sta0.datetime,sta0.userid,sta0.bookid,sta0.judgecount,
+NVL(sta2.gamecount,0)AS gamecount,
+NVL(sta2.finishcount,0)AS finishcount,
+NVL(sta1.ishomework,sta2.ishomework) AS ishomewk,
+NVL(sta1.entype,sta2.entype)AS typeen
+FROM
+(SELECT a0.id,a0.userid,a0.bookid,
+FROM_UNIXTIME(a0.createtime,'yyyy-MM-dd') AS datetime,a0.judgecount
+FROM product_stw_base a0 WHERE
+a0.udatetime>=unix_timestamp(from_unixtime(unix_timestamp(),'yyyy-MM-dd'),'yyyy-MM-dd')
+) sta0 LEFT JOIN
+(SELECT a1.id,a1.entype,1 AS ishomework
+FROM product_stw_entype a1
+WHERE a1.homeworkid='0' AND a1.entype!=0
+) sta1 ON sta0.id=sta1.id
+LEFT JOIN
+(SELECT a3.id,a4.gamecount,a4.finishcount,a3.entype,0 AS ishomework
+FROM product_stw_entype a3 JOIN product_stw_kpibase a4
+ON a3.homeworkid=a4.id
+WHERE a3.homeworkid!='0' AND a3.entype!=0
+)sta2 ON sta0.id = sta2.id
+WHERE sta1.entype IS NOT NULL OR sta2.entype IS NOT NULL
+)stab1
+GROUP BY stab1.userid,stab1.bookid,stab1.typeen,stab1.ishomewk,stab1.datetime
+) stabl1 
+GROUP BY stabl1.userid,stabl1.bookid,stabl1.typeen,stabl1.datetime
+) s1 LEFT JOIN 
+(SELECT DISTINCT sa2.userid,sa2.username,sa2.schoolid,sa2.classid,sa2.classname
+FROM teacher_student_info sa2 
+)s2 ON s1.userid=s2.userid
+GROUP BY s1.userid,s2.username,s2.schoolid,s2.classid,s2.classname,s1.datetime;
