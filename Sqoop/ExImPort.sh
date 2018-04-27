@@ -1,0 +1,10 @@
+# import
+sqoop import --connect jdbc:mysql://172.16.10.26:3306/xh_elasticsearch --username xhelas --password Ma0Zy6P0 --query "select * from teacher_info_stunum where datetime=adddate(date(sysdate()),-1)+0 and \$CONDITIONS" --split-by datetime --hive-import --target-dir /user/hive/warehouse/xh_elasticsearch.db/teacher_info_stunum --hive-table teacher_info_stunum --incremental append -check-column teacherid -last-value '0';
+sqoop import --connect jdbc:mysql://172.16.10.26:3306/xh_elasticsearch --username xhelas --password Ma0Zy6P0 --query "select * from school_grade_user where datetime=adddate(date(sysdate()),-1) and \$CONDITIONS" --split-by datetime --hive-import --target-dir /user/hive/warehouse/xh_elasticsearch.db/school_grade_user --hive-table school_grade_user --incremental append -check-column id -last-value '0';
+sqoop import --connect jdbc:mysql://172.16.10.26:3306/xh_elasticsearch --username xhelas --password Ma0Zy6P0 --query "select * from teacher_student_info where datetime=adddate(date(sysdate()),-1)+0 and \$CONDITIONS" --split-by datetime --hive-import --target-dir /user/hive/warehouse/xh_elasticsearch.db/teacher_student_info --hive-table teacher_student_info --incremental append -check-column teacherid -last-value '0';
+
+# export
+sqoop export --connect 'jdbc:mysql://172.16.10.26:3306/xh_elasticsearch?useUnicode=true&characterEncoding=utf-8' --username xhelas --password Ma0Zy6P0 --table product_stw_subject --hcatalog-table product_stw_subject;  
+sqoop export --connect 'jdbc:mysql://172.16.10.26:3306/xh_elasticsearch?useUnicode=true&characterEncoding=utf-8' --username xhelas --password Ma0Zy6P0 --table product_stw_daycount --hcatalog-table product_stw_daycount;
+sqoop export --connect 'jdbc:mysql://172.16.10.26:3306/xh_elasticsearch?useUnicode=true&characterEncoding=utf-8' --username xhelas --password Ma0Zy6P0 --table product_stw_kpicount --hcatalog-table product_stw_kpicount;
+sqoop export --connect 'jdbc:mysql://172.16.10.26:3306/xh_elasticsearch?useUnicode=true&characterEncoding=utf-8' --username xhelas --password Ma0Zy6P0 --table product_stw_encount --hcatalog-table product_stw_encount;
