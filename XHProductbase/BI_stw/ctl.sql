@@ -180,7 +180,7 @@ CASE WHEN sta7.entype = '14' THEN
 SUM(IF(sta7.judgecount='100',1,0)) END AS blankfull,
 CASE WHEN sta7.entype = '9' THEN
 COUNT(sta7.ishomework) END AS listennum,
-CASE WHEN sta7.entype = '7' THENkok
+CASE WHEN sta7.entype = '7' THEN
 COUNT(sta7.ishomework) END AS readnum,
 CASE WHEN sta7.entype = '14' THEN
 COUNT(sta7.ishomework) END AS blanknum
