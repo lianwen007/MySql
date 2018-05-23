@@ -1,0 +1,273 @@
+CREATE TABLE `product_stw_base`(
+  `username` string, 
+  `userid` bigint, 
+  `classname` string, 
+  `classid` int, 
+  `schoolname` string, 
+  `schoolid` bigint, 
+  `hp` int, 
+  `credit` int, 
+  `bookname` string, 
+  `bookid` string, 
+  `id` string, 
+  `createtime` bigint, 
+  `updatetime` bigint, 
+  `judgecount` int, 
+  `newintegral` float, 
+  `ishomework` int, 
+  `rightnum` int, 
+  `timecost` int, 
+  `udatetime` bigint)
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' 
+WITH SERDEPROPERTIES ( 
+  'field.delim'='\t', 
+  'serialization.format'='\t') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'hdfs://bigdata03:8020/user/hive/warehouse/product_stw_base'
+TBLPROPERTIES (
+  'COLUMN_STATS_ACCURATE'='true', 
+  'numFiles'='1535', 
+  'numRows'='0', 
+  'rawDataSize'='0', 
+  'totalSize'='8176982689', 
+  'transient_lastDdlTime'='1526844623');
+
+
+CREATE TABLE `product_stw_daycount`(
+  `userid` bigint, 
+  `username` string, 
+  `schoolid` bigint, 
+  `schoolname` string, 
+  `classname` string, 
+  `classid` int, 
+  `bookname` string, 
+  `bookid` string, 
+  `hp` int, 
+  `credit` int, 
+  `countscore` float, 
+  `numhomework` int, 
+  `numselfwork` int, 
+  `topicnum` int, 
+  `countright` int, 
+  `rightlv` float, 
+  `counttime` int, 
+  `datetime` string)
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' 
+WITH SERDEPROPERTIES ( 
+  'field.delim'='\t', 
+  'serialization.format'='\t') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'hdfs://bigdata03:8020/user/hive/warehouse/product_stw_daycount'
+TBLPROPERTIES (
+  'COLUMN_STATS_ACCURATE'='true', 
+  'numFiles'='1', 
+  'numRows'='432348', 
+  'rawDataSize'='68274540', 
+  'totalSize'='68706888', 
+  'transient_lastDdlTime'='1526846564');
+
+
+CREATE TABLE `product_stw_encount`(
+  `userid` bigint, 
+  `username` string, 
+  `schoolid` bigint, 
+  `classid` int, 
+  `classname` string, 
+  `gamecount` int, 
+  `finishcount` int, 
+  `homefull` int, 
+  `selfcount` int, 
+  `selffull` int, 
+  `listenfull` int, 
+  `readfull` int, 
+  `blankfull` int, 
+  `listenrate` int, 
+  `readrate` int, 
+  `blankrate` int, 
+  `listennum` int, 
+  `readnum` int, 
+  `blanknum` int, 
+  `rateavg` float, 
+  `datetime` string)
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' 
+WITH SERDEPROPERTIES ( 
+  'field.delim'='\t', 
+  'serialization.format'='\t') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'hdfs://bigdata03:8020/user/hive/warehouse/product_stw_encount'
+TBLPROPERTIES (
+  'COLUMN_STATS_ACCURATE'='true', 
+  'numFiles'='1', 
+  'numRows'='68343', 
+  'rawDataSize'='5204900', 
+  'totalSize'='5273243', 
+  'transient_lastDdlTime'='1526847875');
+
+
+
+
+CREATE TABLE `product_stw_entype`(
+  `id` string, 
+  `homeworkid` string, 
+  `entype` int)
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' 
+WITH SERDEPROPERTIES ( 
+  'field.delim'='\t', 
+  'serialization.format'='\t') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'hdfs://bigdata03:8020/user/hive/warehouse/product_stw_entype'
+TBLPROPERTIES (
+  'COLUMN_STATS_ACCURATE'='true', 
+  'numFiles'='33', 
+  'numRows'='0', 
+  'rawDataSize'='0', 
+  'totalSize'='38648122', 
+  'transient_lastDdlTime'='1526844633');
+
+
+
+CREATE TABLE `product_stw_game`(
+  `id` string, 
+  `studentid` bigint, 
+  `bookid` string, 
+  `bookname` string, 
+  `createtime` bigint, 
+  `updatetime` bigint, 
+  `judgecount` int, 
+  `intergral` int, 
+  `newintegral` float, 
+  `ishomework` int, 
+  `rightnum` int, 
+  `timecost` int, 
+  `udatetime` bigint)
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' 
+WITH SERDEPROPERTIES ( 
+  'field.delim'='\t', 
+  'serialization.format'='\t') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'hdfs://bigdata03:8020/user/hive/warehouse/product_stw_game'
+TBLPROPERTIES (
+  'COLUMN_STATS_ACCURATE'='true', 
+  'numFiles'='1', 
+  'totalSize'='94688547', 
+  'transient_lastDdlTime'='1524620339');
+
+
+
+CREATE TABLE `product_stw_kpibase`(
+  `id` string, 
+  `homeworkid` string, 
+  `createtime` bigint, 
+  `userid` int, 
+  `teacherid` int, 
+  `bookid` string, 
+  `gamecount` int, 
+  `finishcount` int, 
+  `isfinish` int, 
+  `updatetime` bigint)
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' 
+WITH SERDEPROPERTIES ( 
+  'field.delim'='\t', 
+  'serialization.format'='\t') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'hdfs://bigdata03:8020/user/hive/warehouse/product_stw_kpibase'
+TBLPROPERTIES (
+  'COLUMN_STATS_ACCURATE'='true', 
+  'numFiles'='18', 
+  'numRows'='0', 
+  'rawDataSize'='0', 
+  'totalSize'='43006955', 
+  'transient_lastDdlTime'='1526844626');
+
+
+
+CREATE TABLE `product_stw_kpicount`(
+  `teacherid` bigint, 
+  `teachername` string, 
+  `classid` int, 
+  `classname` string, 
+  `studentnum` bigint, 
+  `schoolid` bigint, 
+  `schoolname` string, 
+  `subjectid` int, 
+  `practicenum` int, 
+  `taskfixnum` int, 
+  `taskstunum` int, 
+  `taskupnum` int, 
+  `datetime` bigint, 
+  `uptime` bigint)
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' 
+WITH SERDEPROPERTIES ( 
+  'field.delim'='\t', 
+  'serialization.format'='\t') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'hdfs://bigdata03:8020/user/hive/warehouse/product_stw_kpicount'
+TBLPROPERTIES (
+  'COLUMN_STATS_ACCURATE'='true', 
+  'numFiles'='1', 
+  'numRows'='408541', 
+  'rawDataSize'='35120682', 
+  'totalSize'='35529223', 
+  'transient_lastDdlTime'='1526847229');
+
+
+
+CREATE TABLE `product_stw_subject`(
+  `bookid` string, 
+  `bookname` string, 
+  `subjectid` int, 
+  `subtype` int, 
+  `updatetime` bigint)
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' 
+WITH SERDEPROPERTIES ( 
+  'field.delim'='\t', 
+  'serialization.format'='\t') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'hdfs://bigdata03:8020/user/hive/warehouse/product_stw_subject'
+TBLPROPERTIES (
+  'COLUMN_STATS_ACCURATE'='true', 
+  'numFiles'='1', 
+  'numRows'='0', 
+  'rawDataSize'='0', 
+  'totalSize'='3641', 
+  'transient_lastDdlTime'='1526844629');
