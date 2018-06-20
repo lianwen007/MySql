@@ -23,7 +23,9 @@ CREATE TABLE `fact_king_english_count_daily`(
 PARTITIONED BY (src_file_day string)  
 STORED AS PARQUET;
 
+sqoop export --connect 'jdbc:mysql://172.16.10.26:3306/xh_elasticsearch?useUnicode=true&characterEncoding=utf-8' --username xhelas --password Ma0Zy6P0 --table product_stw_encount1 --hcatalog-database rptdata --hcatalog-table fact_king_english_count_daily
 
+TRUNCATE TABLE rptdata.fact_king_english_count_daily;
 SET hive.exec.dynamic.partition.mode=nonstrict;
 INSERT OVERWRITE TABLE rptdata.fact_king_english_count_daily partition(src_file_day)
 SELECT stab1.student_id,s2.student_name,s2.school_id,s2.class_id,s2.class_name,
@@ -78,15 +80,27 @@ SELECT a7.student_id,a7.accuracy,a7.ishome_work,a7.question_type,
 a9.subject_id,a8.game_count,a8.finish_count,
 FROM_UNIXTIME(INT(a8.create_time/1000),'yyyy-MM-dd') AS date_time
 FROM rptdata.fact_king_game_detail a7 
-JOIN rptdata.fact_king_book_library_detail a9
-ON a7.book_id = a9.book_id
 LEFT JOIN 
   rptdata.fact_king_homework_detail a8
   ON a7.homework_id = a8.id
+JOIN rptdata.fact_king_book_library_detail a9
+ON a7.book_id = a9.book_id
 WHERE a7.src_file_day = from_unixtime(unix_timestamp()-60*60*24*1,'yyyyMMdd')
 AND a9.src_file_day = from_unixtime(unix_timestamp()-60*60*24*1,'yyyyMMdd')
 AND a8.src_file_day = from_unixtime(unix_timestamp()-60*60*24*1,'yyyyMMdd')
 AND a9.subject_id = '3'
+AND a7.ishome_work ='0'
+UNION ALL
+SELECT a17.student_id,a17.accuracy,a17.ishome_work,a17.question_type,
+a19.subject_id,0 AS game_count,0 AS finish_count,
+FROM_UNIXTIME(INT(a17.create_time/1000),'yyyy-MM-dd') AS date_time
+FROM rptdata.fact_king_game_detail a17 
+JOIN rptdata.fact_king_book_library_detail a19
+ON a17.book_id = a19.book_id
+WHERE a17.src_file_day = from_unixtime(unix_timestamp()-60*60*24*1,'yyyyMMdd')
+AND a19.src_file_day = from_unixtime(unix_timestamp()-60*60*24*1,'yyyyMMdd')
+AND a19.subject_id = '3' 
+AND a17.ishome_work = '1'
 ) sta7
 GROUP BY sta7.student_id,sta7.date_time,sta7.question_type,sta7.ishome_work,
 sta7.game_count,
