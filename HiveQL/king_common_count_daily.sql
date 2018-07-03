@@ -1,3 +1,33 @@
+-- MYSQL CREATE TABLE
+CREATE TABLE `king_common_count_daily` (
+  `student_id` bigint(20) DEFAULT NULL,
+  `student_name` varchar(10) DEFAULT NULL,
+  `school_id` bigint(20) DEFAULT NULL,
+  `school_name` varchar(50) DEFAULT NULL,
+  `class_id` bigint(20) DEFAULT NULL,
+  `class_name` varchar(30) DEFAULT NULL,
+  `book_id` varchar(30) DEFAULT NULL,
+  `book_name` varchar(50) DEFAULT NULL,
+  `subject_id` int(20) DEFAULT NULL,
+  `hp` int(20) DEFAULT NULL,
+  `credit` int(20) DEFAULT NULL,
+  `total_integral` int(20) DEFAULT NULL,
+  `game_integral` int(20) DEFAULT NULL,
+  `homework_num` int(20) DEFAULT NULL,
+  `self_work_num` int(20) DEFAULT NULL,
+  `old_topic_num` int(20) DEFAULT NULL,
+  `topic_num` int(20) DEFAULT NULL,
+  `qst_right_num` int(20) DEFAULT NULL,
+  `qst_right_rate` float DEFAULT NULL,
+  `time_cost` int(20) DEFAULT NULL,
+  `date_time` varchar(10) DEFAULT NULL,
+  `src_file_day` varchar(10) DEFAULT NULL,
+  KEY `index_school_id` (`school_id`) USING BTREE,
+  KEY `index_class_id` (`class_id`) USING BTREE,
+  KEY `index_book_id` (`book_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- HIVE CREATE TABLE
 CREATE TABLE rptdata.final_king_common_count_daily(
   student_id bigint,
   student_name string,
@@ -5,7 +35,7 @@ CREATE TABLE rptdata.final_king_common_count_daily(
   school_name string,
   class_id bigint,
   class_name string,
-  book_id string, 
+  book_id string,
   book_name string,
   subject_id int,
   hp int,
@@ -23,7 +53,7 @@ CREATE TABLE rptdata.final_king_common_count_daily(
 PARTITIONED BY (src_file_day string)  
 STORED AS PARQUET;
 
-sqoop export --connect 'jdbc:mysql://172.16.10.26:3306/xh_elasticsearch?useUnicode=true&characterEncoding=utf-8' --username xhelas --password Ma0Zy6P0 --table king_common_count_daily --hcatalog-database rptdata --hcatalog-table final_king_common_count_daily --hive-partition-key src_file_day --hive-partition-value 20180621
+sqoop export --connect 'jdbc:mysql://172.16.10.26:3306/xh_elasticsearch?useUnicode=true&characterEncoding=utf-8' --username xhelas --password Ma0Zy6P0 --table king_common_count_daily --hcatalog-database rptdata --hcatalog-table final_king_common_count_daily --hive-partition-key src_file_day --hive-partition-value 20180703
 
 
 SET hive.exec.dynamic.partition.mode=nonstrict; 
@@ -57,7 +87,7 @@ FROM
 a3.student_id,
 a3.book_id,
 a3.book_name,
-a3.subject_id,
+a3.sub_id AS subject_id,
 FROM_UNIXTIME(int(a3.create_time/1000),'yyyyMMdd') AS date_time,
 SUM(a3.integral) AS game_integral,
 SUM(IF(a3.ishome_work = 0,1,0)) AS sumhomework,
@@ -74,7 +104,10 @@ CASE WHEN a3.book_type in(2,5) THEN SUM(a3.fail_count)
 SUM(a3.accuracy)AS engrightrate,
 SUM(a3.time_consuming) AS sumtime,
 a3.book_type
-FROM(SELECT a33.*,a44.book_name,a44.book_type FROM
+FROM(
+SELECT a33.*,
+a44.book_name,a44.book_type,a44.subject_id sub_id
+FROM
 rptdata.fact_king_game_detail a33 
 LEFT JOIN rptdata.fact_king_book_library_detail a44 ON a33.book_id=a44.book_id
 WHERE a33.src_file_day = from_unixtime(unix_timestamp()-60*60*24*1,+'yyyyMMdd')
@@ -83,7 +116,7 @@ AND a44.src_file_day = from_unixtime(unix_timestamp()-60*60*24*1,'yyyyMMdd')
 GROUP BY
 a3.student_id,
 a3.book_id,
-a3.subject_id,
+a3.sub_id,
 a3.book_name,
 FROM_UNIXTIME(int(a3.create_time/1000),'yyyyMMdd'),a3.book_type
 ) sta1 
