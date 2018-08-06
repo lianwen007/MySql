@@ -64,7 +64,7 @@ INT(sta1.qst_right*10/sta1.qst_num)/10 AS qst_right_rate, 3 AS is_weekly
 FROM(
 SELECT a1.student_id,
 a1.book_id,a2.subject_id,a2.book_type,
-  SUM(a1.integral) integral,SUM(a1.word_count) word_num,
+  SUM(a1.integral) integral,SUM(NVL(a1.word_count,0)) word_num,
 CASE WHEN a2.book_type IN (1,3,4) THEN  SUM(a1.qst_count)
     WHEN a2.book_type IN (2,5) THEN COUNT(a1.game_id)
     END AS qst_num,
@@ -92,7 +92,7 @@ INT(sta1.qst_right*10/sta1.qst_num)/10 AS qst_right_rate, 2 AS is_weekly
 FROM(
 SELECT a1.student_id,
 a1.book_id,a2.subject_id,a2.book_type,
-  SUM(a1.integral) integral,SUM(a1.word_count) word_num,
+  SUM(a1.integral) integral,SUM(NVL(a1.word_count,0)) word_num,
 CASE WHEN a2.book_type IN (1,3,4) THEN  SUM(a1.qst_count)
     WHEN a2.book_type IN (2,5) THEN COUNT(a1.game_id)
     END AS qst_num,
@@ -120,7 +120,7 @@ INT(sta1.qst_right*10/sta1.qst_num)/10 AS qst_right_rate, 4 AS is_weekly
 FROM(
 SELECT a1.student_id,
 a1.book_id,a2.subject_id,a2.book_type,
-  SUM(a1.integral) integral,SUM(a1.word_count) word_num,
+  SUM(a1.integral) integral,SUM(NVL(a1.word_count,0)) word_num,
 CASE WHEN a2.book_type IN (1,3,4) THEN  SUM(a1.qst_count)
     WHEN a2.book_type IN (2,5) THEN COUNT(a1.game_id)
     END AS qst_num,
@@ -148,7 +148,7 @@ INT(sta1.qst_right*10/sta1.qst_num)/10 AS qst_right_rate, 1 AS is_weekly
 FROM(
 SELECT a1.student_id,
 a1.book_id,a2.subject_id,a2.book_type,
-  SUM(a1.integral) integral,SUM(a1.word_count) word_num,   
+  SUM(a1.integral) integral,SUM(NVL(a1.word_count,0)) word_num,   
 CASE WHEN a2.book_type IN (1,3,4) THEN  SUM(a1.qst_count)
     WHEN a2.book_type IN (2,5) THEN COUNT(a1.game_id)
     END AS qst_num,
