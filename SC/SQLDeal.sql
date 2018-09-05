@@ -1,5 +1,5 @@
 -- dwd_duowei_apps
-SELECT id as id
+select id as id
  ,collect_id as person_id
  ,app_name as name
  ,version_name as version
@@ -17,16 +17,16 @@ SELECT id as id
  ,install_time as install_time
  ,install_path as install_path
  ,data_flag as data_flag
- ,'I' dwd_op_type
+ ,'i' dwd_op_type
  ,null as dwd_server_date
  ,null as dwd_sync_date
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_app_info a;
 
 -- dwd_duowei_bluetooth_access
-SELECT id as id
+select id as id
  ,collect_id as person_id
  ,relationship_bt_dev_name as name
  ,null as bluetooth_type_dm
@@ -47,15 +47,15 @@ SELECT id as id
  ,null as bluetooth_type_name
  ,null as dwd_server_date
  ,null as dwd_sync_date
- ,'I' dwd_op_type
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_conn_bluetooth a; 
  
  
 -- dwd_duowei_bluetooth_his
-SELECT id as id
+select id as id
  ,collect_id as person_id
  ,relationship_bt_mac as friend_bluetooth_mac
  ,file_name as mime_name
@@ -63,15 +63,15 @@ SELECT id as id
  ,file_type as mime_type_dm
  ,conn_time as start_time
  ,find_time as end_time
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
  ,take_time as client_date
  ,upload_time as server_date
  ,null as sync_date
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,case FILE_TYPE when 1 then '文本' when 2 then '图片' when 3 then '语音' when 4 then '视频' when 5 then '文件' when 9 then '其他' end mime_type_name
- ,case DIRECTION when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case file_type when 1 then '文本' when 2 then '图片' when 3 then '语音' when 4 then '视频' when 5 then '文件' when 9 then '其他' end mime_type_name
+ ,case direction when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_conn_bluetooth a;
    
 -- dwd_duowei_calendar
@@ -93,9 +93,9 @@ select a.id as id
  ,a.notice_rule
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,'I' dwd_op_type
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_calendar a
    
@@ -108,7 +108,7 @@ select id as id
  ,app_type as app_id_dm
  ,null as lastlogin
  ,deal_flag as deal_status_dm
- ,DESCRIPTION as relafulldesc
+ ,description as relafulldesc
  ,del_flag as del_flag
  ,null as remark
  ,take_time as client_date
@@ -142,9 +142,9 @@ select id as id
  ,null as city_code_name
  ,null as certificate_type_name
  ,null as blood_type_name
- ,'I' dwd_op_type
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_ecom_deal a ;
  
@@ -171,8 +171,8 @@ select id as id
  ,shop_name as shop_name
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,case SAVE_FOLDER when 1 then '收藏夹' when 2 then '购物车' when 3 then '已购买' when 4 then '普通浏览' when 99 then '其他' end as goodssource_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case save_folder when 1 then '收藏夹' when 2 then '购物车' when 3 then '已购买' when 4 then '普通浏览' when 99 then '其他' end as goodssource_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_ecom_goods a ;
  
 -- dwd_duowei_ecom_searchrecord
@@ -187,9 +187,9 @@ select id as id
  ,null as sync_date
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,'I' dwd_op_type
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_ecom_search a ;
  
@@ -207,7 +207,7 @@ select id as id
  ,data_flag as data_flag
  ,valid_flag as valid_flag
  ,collect_id as collect_id
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_ecom_shops a ;
 
 -- dwd_duowei_ecom_tradingrecord
@@ -226,7 +226,7 @@ select id as id
  ,null as rec_phone
  ,null as rec_addr
  ,deal_flag as deal_status_dm
- ,DESCRIPTION as relafulldesc
+ ,description as relafulldesc
  ,del_flag as del_flag
  ,null as remark
  ,take_time as client_date
@@ -238,7 +238,7 @@ select id as id
  ,valid_flag as valid_flag
  ,case direction when 1 then '支出' when 2 then '收入' when 0 then '未知' end as tradingtype_name
  ,case deal_flag when 0 then '未知' when 1 then '交易未开始' when 2 then '交易中' when 3 then '交易完成' when 4 then '交易关闭' when 9 then '其他' end as deal_status_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_ecom_deal a ;
  
 -- dwd_duowei_email
@@ -264,7 +264,7 @@ select id as id
  ,valid_flag as valid_flag
  ,collect_id
  ,case save_folder when 1 then '收件箱' when 2 then '发件箱' when 3 then '草稿箱' when 4 then '垃圾箱' when 5 then '回收站' when 9 then '其他' end as mail_save_folder_name
- ,'I' as dwd_op_type,null as dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') as dwd_batch,'02' as dwd_source
+ ,'i' as dwd_op_type,null as dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') as dwd_batch,'02' as dwd_source
  from kn_mf_email_content a; 
  
 -- duowei_email_account
@@ -308,10 +308,10 @@ select a.id as id
  ,null as app_id_name
  ,null as city_code_name
  ,null as certificate_type_name
- ,case a.blood_type::int when 0 then '未知' when 1 then 'A型'when 2 then 'B型' when 3 then 'O型' when 4 then 'AB型' when 9 then '其他' end as blood_type_name
- ,'I' dwd_op_type
+ ,case a.blood_type::int when 0 then '未知' when 1 then 'a型'when 2 then 'b型' when 3 then 'o型' when 4 then 'ab型' when 9 then '其他' end as blood_type_name
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_email_contact a
  
@@ -328,9 +328,9 @@ select a.id as id
  ,null as sync_date
  ,a.data_flag
  ,a.valid_flag
- ,'I' as dwd_op_type
+ ,'i' as dwd_op_type
  ,null as dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') as dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') as dwd_batch
  ,'02' as dwd_source
  from kn_mf_email_attachment a 
  left join kn_mf_email_content b 
@@ -375,8 +375,8 @@ select id as id
  ,null as city_code_name
  ,null as certificate_type_name
  ,collect_id as collect_id
- ,case a.blood_type::int when 0 then '未知' when 1 then 'A型'when 2 then 'B型' when 3 then 'O型' when 4 then 'AB型' when 9 then '其他' end as blood_type_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case a.blood_type::int when 0 then '未知' when 1 then 'a型'when 2 then 'b型' when 3 then 'o型' when 4 then 'ab型' when 9 then '其他' end as blood_type_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_email_contact a ;
 
 -- dwd_duowei_email_search
@@ -391,7 +391,7 @@ select id as id
  ,app_type as app_type
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_email_search a ;
 
  
@@ -414,9 +414,9 @@ select id as id
  ,gps_type as gps_type
  ,data_flag
  ,valid_flag
- ,'I' dwd_op_type
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_gps_position a 
  
@@ -473,10 +473,10 @@ select id as id
  ,null as account_type_name
  ,null as city_code_name
  ,null as certificate_type_name
- ,case a.blood_type::int when 0 then '未知' when 1 then 'A型'when 2 then 'B型' when 3 then 'O型' when 4 then 'AB型' when 9 then '其他' end as blood_type_name
- ,'I' dwd_op_type
+ ,case a.blood_type::int when 0 then '未知' when 1 then 'a型'when 2 then 'b型' when 3 then 'o型' when 4 then 'ab型' when 9 then '其他' end as blood_type_name
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_im_friend a ;
 
@@ -527,8 +527,8 @@ select id as id
  ,null as account_type_name
  ,null as city_code_name
  ,null as certificate_type_name
- ,case a.blood_type::int when 0 then '未知' when 1 then 'A型'when 2 then 'B型' when 3 then 'O型' when 4 then 'AB型' when 9 then '其他' end as blood_type_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case a.blood_type::int when 0 then '未知' when 1 then 'a型'when 2 then 'b型' when 3 then 'o型' when 4 then 'ab型' when 9 then '其他' end as blood_type_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_im_group_member a ;
 
 -- dwd_duowei_im_group
@@ -556,7 +556,7 @@ select id as id
  ,data_flag as data_flag
  ,valid_flag as valid_flag
  ,null as account_type_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_im_group a ;
 
 -- dwd_duowei_im_message
@@ -568,14 +568,14 @@ select id as id
  ,collect_id as account_id
  ,account as account
  ,null as nickname
- ,GROUP_ACCOUNT as otherid
- ,GROUP_NAME as group_name
+ ,group_account as otherid
+ ,group_name as group_name
  ,content as message
- ,SENDER_ACCOUNT as senderid
- ,SENDER_NICKNAME as sendername
+ ,sender_account as senderid
+ ,sender_nickname as sendername
  ,send_time as createtime
  ,null as orderindex
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
  ,del_flag as del_flag
  ,null as remark
  ,take_time as client_date
@@ -587,8 +587,8 @@ select id as id
  ,valid_flag as valid_flag
  ,null as account_type_name
  ,'群组' as type_name
- ,case DIRECTION when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case direction when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_im_group_msg a;
  union all
  select id as id
@@ -606,7 +606,7 @@ select id as id
  ,friend_nickname as sendername
  ,send_time as createtime
  ,null as orderindex
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
  ,del_flag as del_flag
  ,null as remark
  ,take_time as client_date
@@ -618,10 +618,10 @@ select id as id
  ,valid_flag as valid_flag
  ,null as account_type_name
  ,'好友' as type_name
- ,case DIRECTION when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
- ,'I' dwd_op_type
+ ,case direction when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_im_friend_msg a
   union all       
@@ -640,7 +640,7 @@ select id as id
  ,friend_nickname as sendername
  ,send_time as createtime
  ,null as orderindex
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
  ,del_flag as del_flag
  ,null as remark
  ,take_time as client_date
@@ -652,10 +652,10 @@ select id as id
  ,valid_flag as valid_flag
  ,null as account_type_name
  ,'好友' as type_name
- ,case DIRECTION when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
- ,'I' dwd_op_type
+ ,case direction when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_dr_im_friend_msg a;
  
@@ -700,10 +700,10 @@ select a.id as id
  ,null as account_type_name
  ,null as city_code_name
  ,null as certificate_type_name
- ,case a.blood_type::int when 0 then '未知' when 1 then 'A型'when 2 then 'B型' when 3 then 'O型' when 4 then 'AB型' when 9 then '其他' end as blood_type_name
- ,'I' dwd_op_type
+ ,case a.blood_type::int when 0 then '未知' when 1 then 'a型'when 2 then 'b型' when 3 then 'o型' when 4 then 'ab型' when 9 then '其他' end as blood_type_name
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_im_friend a
  where a.app_type not in (11001,11002)
@@ -722,7 +722,7 @@ select id as id
  ,data_flag as data_flag
  ,valid_flag as valid_flag
  ,null as account_type_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_im_search a; 
 
 -- dwd_duowei_map_navigation
@@ -757,9 +757,9 @@ select id as id
  ,valid_flag as valid_flag
  ,start_place_address as start_place_name
  ,end_place_address as end_place_name
- ,'I' dwd_op_type
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_gps_route a ;
 
@@ -783,9 +783,9 @@ select id as id
  ,data_flag as data_flag
  ,valid_flag as valid_flag
  ,del_flag
- ,'I' dwd_op_type
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_gps_position a ;
  
@@ -802,9 +802,9 @@ select id as id
  ,null as sync_date
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,'I' dwd_op_type
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_gps_search a ;
 
@@ -849,15 +849,15 @@ select id as id
  ,null as city_code_name
  ,null as certificate_type_name
  ,null as blood_type_name
- ,'I' dwd_op_type
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_gps_position a ;
  
  
 -- dwd_duowei_memo
-SELECT id as id
+select id as id
  ,collect_id as person_id
  ,title as title
  ,event_place as place
@@ -873,9 +873,9 @@ SELECT id as id
  ,null as sync_date
  ,valid_flag as valid_flag
  ,data_flag as data_flag
- ,'I' dwd_op_type
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_calendar a;
 
@@ -937,9 +937,9 @@ select     a.collect_id as id
  ,null as security_software_org_name
  ,max(a.policestation_addr) as dept_name
  ,null as incharge_wa_department_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_base_info a
- LEFT JOIN KN_MF_DEVICE_INFO b ON a.COLLECT_ID = b.COLLECT_ID AND b.DATA_FLAG = '0'
+ left join kn_mf_device_info b on a.collect_id = b.collect_id and b.data_flag = '0'
  group by a.collect_id;
  
 -- dwd_duowei_phone_calllog
@@ -948,11 +948,11 @@ select id as id
  ,o_mobile as msisdn
  ,relationship_phone as phonenum
  ,relationship_name as relationship_name
- ,to_timestamp(CASE SEND_TIME WHEN '0' THEN NULL ELSE SEND_TIME END,'YYYY')::timestamp(0)without time zone as calltime
- ,to_timestamp(CASE SEND_TIME WHEN '0' THEN NULL ELSE SEND_TIME END,'YYYY')::timestamp(0)without time zone + (duration || ' sec')::interval as end_time
+ ,to_timestamp(case send_time when '0' then null else send_time end,'yyyy')::timestamp(0)without time zone as calltime
+ ,to_timestamp(case send_time when '0' then null else send_time end,'yyyy')::timestamp(0)without time zone + (duration || ' sec')::interval as end_time
  ,duration as duration
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
- ,case DIRECTION when 1 then '1' when 2 then '1' when 0 then '9' when 99 then '9' end as status_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '1' when 2 then '1' when 0 then '9' when 99 then '9' end as status_dm
  ,data_source as datasource_dm
  ,null as physeq
  ,del_flag as del_flag
@@ -964,11 +964,11 @@ select id as id
  ,attribution as attribution
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,case DIRECTION when 1 then '接通' when 2 then '接通' when 0 then '其他' when 99 then '其他' end as status_name
- ,case DIRECTION when 1 then '拨打' when 2 then '接听' when 0 then '其他' when 99 then '其他' end as local_action_name
- ,case DATA_SOURCE when 1 then '手机' when 2 then 'SIM卡' when 3 then '文件' end as datasource_name
+ ,case direction when 1 then '接通' when 2 then '接通' when 0 then '其他' when 99 then '其他' end as status_name
+ ,case direction when 1 then '拨打' when 2 then '接听' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,case data_source when 1 then '手机' when 2 then 'sim卡' when 3 then '文件' end as datasource_name
  ,null as privacyconfig_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_dr_calls a
  union all
  select id as id
@@ -979,8 +979,8 @@ select id as id
  ,send_time as calltime
  ,send_time::timestamp + (duration || ' sec')::interval as end_time
  ,duration as duration
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
- ,case DIRECTION when 1 then '1' when 2 then '1' when 0 then '9' when 99 then '9' end as status_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '1' when 2 then '1' when 0 then '9' when 99 then '9' end as status_dm
  ,data_source as datasource_dm
  ,null as physeq
  ,del_flag as del_flag
@@ -992,11 +992,11 @@ select id as id
  ,attribution as attribution
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,case DIRECTION when 1 then '接通' when 2 then '接通' when 0 then '其他' when 99 then '其他' end as status_name
- ,case DIRECTION when 1 then '拨打' when 2 then '接听' when 0 then '其他' when 99 then '其他' end as local_action_name
- ,case DATA_SOURCE when 1 then '手机' when 2 then 'SIM卡' when 3 then '文件' end as datasource_name
+ ,case direction when 1 then '接通' when 2 then '接通' when 0 then '其他' when 99 then '其他' end as status_name
+ ,case direction when 1 then '拨打' when 2 then '接听' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,case data_source when 1 then '手机' when 2 then 'sim卡' when 3 then '文件' end as datasource_name
  ,null as privacyconfig_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_calls a;
        
 -- dwd_duowei_phone_contact
@@ -1019,11 +1019,11 @@ select id as id
  ,data_flag as data_flag
  ,valid_flag as valid_flag
  ,phone_value_type_mc as phone_value_type_name
- ,case data_source when 1 then '手机' when 2 then 'SIM卡' when 3 then '文件' end as datasource_name
+ ,case data_source when 1 then '手机' when 2 then 'sim卡' when 3 then '文件' end as datasource_name
  ,null as privacyconfig_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_contact a
- left join (select b.value phone_value_type_dm,cast(b.value as INTEGER) phone_value_type_int,b.description phone_value_type_mc from ids_element a,ids_element_value b
+ left join (select b.value phone_value_type_dm,cast(b.value as integer) phone_value_type_int,b.description phone_value_type_mc from ids_element a,ids_element_value b
  where a.id = b.element_id and b.element_id = 8) c
  on a.property = c.phone_value_type_int
  union all
@@ -1046,11 +1046,11 @@ select id as id
  ,data_flag as data_flag
  ,valid_flag as valid_flag
  ,phone_value_type_mc as phone_value_type_name
- ,case data_source when 1 then '手机' when 2 then 'SIM卡' when 3 then '文件' end as datasource_name
+ ,case data_source when 1 then '手机' when 2 then 'sim卡' when 3 then '文件' end as datasource_name
  ,null as privacyconfig_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_dr_contact a
- left join (select b.value phone_value_type_dm,cast(b.value as INTEGER) phone_value_type_int,b.description phone_value_type_mc from ids_element a,ids_element_value b
+ left join (select b.value phone_value_type_dm,cast(b.value as integer) phone_value_type_int,b.description phone_value_type_mc from ids_element a,ids_element_value b
  where a.id = b.element_id and b.element_id = 8) c
  on a.property = c.phone_value_type_int;
   
@@ -1063,7 +1063,7 @@ select id as id
  ,content as content
  ,file_path as mainfile
  ,send_time as smstime
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
  ,read_flag as isread_dm
  ,save_folder as mail_save_folder_dm
  ,null as remark
@@ -1074,13 +1074,13 @@ select id as id
  ,attribution as attribution
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,case DIRECTION when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,case direction when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
  ,case read_flag when 0 then '未读' when 1 then '已读' when 9 then '其他' end as isread_name
  ,case save_folder when 1 then '收件箱' when 2 then '发件箱' when 3 then '草稿箱' when 4 then '垃圾箱'else '其他' end as mail_save_folder_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_multimedia_sms a
- left join (SELECT distinct b.VALUE mail_save_folder_dm,CAST (b. VALUE AS INTEGER) mail_save_folder_int,b.description mail_save_folder_name
- FROM ids_element A,ids_element_value b WHERE A.ID = b.element_id AND a.id=22) c
+ left join (select distinct b.value mail_save_folder_dm,cast (b. value as integer) mail_save_folder_int,b.description mail_save_folder_name
+ from ids_element a,ids_element_value b where a.id = b.element_id and a.id=22) c
  on a.save_folder = c.mail_save_folder_int;
 
 -- dwd_duowei_phone_sms
@@ -1091,7 +1091,7 @@ select id as id
  ,relationship_name as relationship_name
  ,content as content
  ,send_time as smstime
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
  ,read_flag as isread_dm
  ,save_folder as mail_save_folder_dm
  ,null as remark
@@ -1099,16 +1099,16 @@ select id as id
  ,upload_time as server_date
  ,null as sync_date
  ,data_source as datasource_dm
- ,case data_source when 1 then '手机' when 2 then 'SIM卡' end as datasource_name
+ ,case data_source when 1 then '手机' when 2 then 'sim卡' end as datasource_name
  ,attribution as attribution
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,case DIRECTION when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,case direction when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
  ,case read_flag when 0 then '未读' when 1 then '已读' when 9 then '其他' end as isread_name
  ,case save_folder when 1 then '收件箱' when 2 then '发件箱' when 3 then '草稿箱' when 4 then '垃圾箱'else '其他' end as mail_save_folder_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_sms a
- left join (select distinct b.value mail_save_folder_dm,cast(b.value as INTEGER) mail_save_folder_int,b.description mail_save_folder_mc from ids_element a,ids_element_value b
+ left join (select distinct b.value mail_save_folder_dm,cast(b.value as integer) mail_save_folder_int,b.description mail_save_folder_mc from ids_element a,ids_element_value b
  where a.id = b.element_id and b.element_id = 17) c
  on a.save_folder = c.mail_save_folder_int
  union all
@@ -1119,7 +1119,7 @@ select id as id
  ,relationship_name as relationship_name
  ,content as content
  ,send_time as smstime
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
  ,read_flag as isread_dm
  ,save_folder as mail_save_folder_dm
  ,null as remark
@@ -1127,16 +1127,16 @@ select id as id
  ,upload_time as server_date
  ,null as sync_date
  ,data_source as datasource_dm
- ,case data_source when 1 then '手机' when 2 then 'SIM卡' end as datasource_name
+ ,case data_source when 1 then '手机' when 2 then 'sim卡' end as datasource_name
  ,attribution as attribution
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,case DIRECTION when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,case direction when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
  ,case read_flag when 0 then '未读' when 1 then '已读' when 9 then '其他' end as isread_name
  ,case save_folder when 1 then '收件箱' when 2 then '发件箱' when 3 then '草稿箱' when 4 then '垃圾箱'else '其他' end as mail_save_folder_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_dr_sms a
- left join (select distinct b.value mail_save_folder_dm,cast(b.value as INTEGER) mail_save_folder_int,b.description mail_save_folder_mc from ids_element a,ids_element_value b
+ left join (select distinct b.value mail_save_folder_dm,cast(b.value as integer) mail_save_folder_int,b.description mail_save_folder_mc from ids_element a,ids_element_value b
  where a.id = b.element_id and b.element_id = 17) c
  on a.save_folder = c.mail_save_folder_int;
 
@@ -1177,8 +1177,8 @@ select id as id
  ,valid_flag as valid_flag
  ,null as city_code_name
  ,null as certificate_type_name
- ,case a.blood_type::int when 0 then '未知' when 1 then 'A型'when 2 then 'B型' when 3 then 'O型' when 4 then 'AB型' when 9 then '其他' end as blood_type_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case a.blood_type::int when 0 then '未知' when 1 then 'a型'when 2 then 'b型' when 3 then 'o型' when 4 then 'ab型' when 9 then '其他' end as blood_type_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_im_friend_qq a ;
 
 -- dwd_duowei_qq_gmember
@@ -1217,8 +1217,8 @@ select id as id
  ,null as account_type_name
  ,null as city_code_name
  ,null as certificate_type_name
- ,case a.blood_type::int when 0 then '未知' when 1 then 'A型'when 2 then 'B型' when 3 then 'O型' when 4 then 'AB型' when 9 then '其他' end as blood_type_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case a.blood_type::int when 0 then '未知' when 1 then 'a型'when 2 then 'b型' when 3 then 'o型' when 4 then 'ab型' when 9 then '其他' end as blood_type_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_im_group_member_qq a ;
  
 -- dwd_duowei_qq_group
@@ -1241,7 +1241,7 @@ select id as id
  ,account as account
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_im_group_qq a ;
  
 -- dwd_duowei_qq_message
@@ -1250,13 +1250,13 @@ select id as id
  ,null as msgid
  ,2 as type_dm
  ,account as account
- ,GROUP_ACCOUNT as otherid
- ,GROUP_NAME as group_name
+ ,group_account as otherid
+ ,group_name as group_name
  ,content as message
- ,SENDER_ACCOUNT as senderid
- ,SENDER_NICKNAME as sendername
+ ,sender_account as senderid
+ ,sender_nickname as sendername
  ,send_time as createtime
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
  ,del_flag as del_flag
  ,null as remark
  ,take_time as client_date
@@ -1267,8 +1267,8 @@ select id as id
  ,data_flag as data_flag
  ,valid_flag as valid_flag
  ,'群组' as type_name
- ,case DIRECTION when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case direction when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_im_group_msg_qq a
  union all 
  select id as id
@@ -1282,7 +1282,7 @@ select id as id
  ,friend_account as senderid
  ,friend_nickname as sendername
  ,send_time as createtime
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
  ,del_flag as del_flag
  ,null as remark
  ,take_time as client_date
@@ -1293,8 +1293,8 @@ select id as id
  ,data_flag as data_flag
  ,valid_flag as valid_flag
  ,'好友' as type_name
- ,case DIRECTION when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case direction when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_im_friend_msg_qq a
  union all 
 select id as id
@@ -1308,7 +1308,7 @@ select id as id
  ,friend_account as senderid
  ,friend_nickname as sendername
  ,send_time as createtime
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
  ,del_flag as del_flag
  ,null as remark
  ,take_time as client_date
@@ -1319,13 +1319,12 @@ select id as id
  ,data_flag as data_flag
  ,valid_flag as valid_flag
  ,'好友' as type_name
- ,case DIRECTION when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case direction when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_dr_im_friend_msg_qq a;
  
 
 -- dwd_duowei_qq_profile
-
 select a.id as id
  ,a.collect_id as person_id
  ,a.account as account
@@ -1367,10 +1366,10 @@ select a.id as id
  ,a.valid_flag
  ,null as city_code_name
  ,null as certificate_type_name
- ,case a.blood_type::int when 0 then '未知' when 1 then 'A型'when 2 then 'B型' when 3 then 'O型' when 4 then 'AB型' when 9 then '其他' end as blood_type_name
- ,'I' dwd_op_type
+ ,case a.blood_type::int when 0 then '未知' when 1 then 'a型'when 2 then 'b型' when 3 then 'o型' when 4 then 'ab型' when 9 then '其他' end as blood_type_name
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_qq_friend a
  where a.app_type in (11001)
@@ -1388,9 +1387,9 @@ select id as id
  ,null as sync_date
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,'I' dwd_op_type
+ ,'i' dwd_op_type
  ,null dwd_vmd5
- ,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
  ,'02' dwd_source
  from kn_mf_qq_group a ;
  
@@ -1404,7 +1403,7 @@ select id as id
  ,content as content
  ,file_path as mainfile
  ,send_time as smstime
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
  ,read_flag as isread_dm
  ,mail_save_folder_dm as mail_save_folder_dm
  ,null as remark
@@ -1415,7 +1414,7 @@ select id as id
  ,attribution as attribution
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_browser_cookies a ;
  
 -- dwd_duowei_web_favorite
@@ -1432,7 +1431,7 @@ select id as id
  ,null as sync_date
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_browser_favorite a ;
  
 -- dwd_duowei_web_history
@@ -1450,7 +1449,7 @@ select id as id
  ,null as sync_date
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_browser_history a ;
  
 -- dwd_duowei_web_keyword
@@ -1468,7 +1467,7 @@ select id as id
  ,data_flag as data_flag
  ,valid_flag as valid_flag
  ,null as browse_type_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_browser_search a ;
  
 -- dwd_duowei_web_userinfo
@@ -1485,8 +1484,72 @@ select id as id
  ,data_flag as data_flag
  ,valid_flag as valid_flag
  ,null as browse_type_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_browser_website_pwd a ;
+ 
+ 
+-- dwd_duowei_weibo_follow
+select id as id
+ ,account as profile_id
+ ,friend_group as subgroupnum
+ ,friend_account as weiboid
+ ,friend_account as weiboname
+ ,friend_nickname as nickname
+ ,friend_remark as alias
+ ,sex as sexcode
+ ,birthday as birthdate
+ ,email as email 
+ ,null as weblog
+ ,null as qq
+ ,null as msn
+ ,face_id as photo
+ ,city as location
+ ,personal_desc as intro
+ ,null as relation 
+ ,del_flag as del_flag
+ ,null as remark
+ ,take_time as client_date
+ ,upload_time as server_date
+ ,null as sync_date
+ ,country as area
+ ,city as city_code_dm
+ ,telephone as fixed_phone
+ ,mobile as msisdn
+ ,null as city_code_name
+ ,null as certificate_type_name
+ ,age as age
+ ,address postal_address
+ ,null as postal_code
+ ,occupation as occupation_name
+ ,blood_type as blood_type_dm
+ ,real_name as name
+ ,signature as sign_name
+ ,city as reg_city
+ ,school as graduateschool
+ ,null as zodiac
+ ,constellation as constallation
+ ,app_type as app_type
+ ,account as account
+ ,friend_group as friend_group
+ ,friend_type as friend_type
+ ,data_flag as data_flag
+ ,valid_flag as valid_flag
+ ,country as country
+ ,company as company
+ ,hometown as hometown
+ ,mood as mood 
+ ,hobbies as hobbies
+ ,homepage as homepage
+ ,last_login_time as last_login_time
+ ,city as city_code_name
+ ,null as certificate_type_name
+ ,blood_type as blood_type_name
+ ,'i' dwd_op_type
+ ,null dwd_vmd5
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
+ ,'02' dwd_source
+ from kn_mf_weibo_friend a ;
+ 
  
 -- dwd_duowei_weibo_message
 select id as id
@@ -1522,7 +1585,7 @@ select id as id
  ,data_flag as data_flag
  ,valid_flag as valid_flag
  ,case msg_type when 0 then '未知' when 1 then '原创' when 2 then '转发' when 3 then '评论点赞' when 9 then '其他' end as message_type_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_weibo_blog a ;
  
 -- dwd_duowei_weibo_pmessage
@@ -1535,7 +1598,7 @@ select id as id
  ,null as portraitpath
  ,content as content
  ,send_time as createtime
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
  ,del_flag as del_flag
  ,null as remark
  ,take_time as client_date
@@ -1545,9 +1608,69 @@ select id as id
  ,account as account
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,case DIRECTION when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case direction when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_weibo_msg a ;
+ 
+ 
+-- dwd_duowei_weibo_profile
+select id as id
+ ,collect_id as person_id
+ ,account as weiboid
+ ,account as weiboname
+ ,null as nickname
+ ,null as alias
+ ,sex as sexcode
+ ,birthday as birthdate
+ ,email as email 
+ ,null as weblog
+ ,null as qq
+ ,null as msn
+ ,face_id as photo
+ ,city as location
+ ,personal_desc as intro
+ ,null as relation 
+ ,app_type as app_id_dm
+ ,del_flag as del_flag
+ ,null as remark
+ ,take_time as client_date
+ ,upload_time as server_date
+ ,null as sync_date
+ ,null as fans_counter
+ ,null as follow_counter
+ ,null as message_counter
+ ,null as prevacy_message_counter
+ ,null as install_time
+ ,country as area
+ ,city as city_code_dm
+ ,telephone as fixed_phone
+ ,mobile as msisdn
+ ,null as certificate_type_dm
+ ,null as certificate_no
+ ,age as age
+ ,address postal_address
+ ,null as postal_code
+ ,occupation as occupation_name
+ ,blood_type as blood_type_dm
+ ,real_name as name
+ ,signature as sign_name
+ ,city as reg_city
+ ,school as graduateschool
+ ,null as zodiac
+ ,constellation as constallation
+ ,null as app_ma
+ ,data_flag as data_flag
+ ,valid_flag as valid_flag
+ ,null as app_id_name
+ ,city as city_code_name
+ ,null as certificate_type_name
+ ,blood_type as blood_type_name
+ ,'i' dwd_op_type
+ ,null dwd_vmd5
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
+ ,'02' dwd_source
+ from kn_mf_weibo_friend a ;
+ 
  
 -- dwd_duowei_weibo_search
 select id as id
@@ -1561,8 +1684,28 @@ select id as id
  ,null as sync_date
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_weibo_search a ;
+ 
+ 
+-- dwd_duowei_qq_subgroup
+select id as id
+ ,account as profile_id
+ ,null as groupnum
+ ,friend_group as groupname
+ ,del_flag as del_flag
+ ,null as remark
+ ,take_time as client_date
+ ,upload_time as server_date
+ ,null as sync_date
+ ,data_flag as data_flag
+ ,valid_flag as valid_flag
+ ,'i' dwd_op_type
+ ,null dwd_vmd5
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
+ ,'02' dwd_source
+ from kn_mf_qq_group a ;
+ 
  
 -- dwd_duowei_weixin_contact
 select id as id
@@ -1602,8 +1745,8 @@ select id as id
  ,valid_flag as valid_flag
  ,null as city_code_name
  ,null as certificate_type_name 
- ,case a.blood_type::int when 0 then '未知' when 1 then 'A型'when 2 then 'B型' when 3 then 'O型' when 4 then 'AB型' when 9 then '其他' end as blood_type_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case a.blood_type::int when 0 then '未知' when 1 then 'a型'when 2 then 'b型' when 3 then 'o型' when 4 then 'ab型' when 9 then '其他' end as blood_type_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_im_friend_weixin a ;
  
 -- dwd_duowei_weixin_gmember
@@ -1644,8 +1787,8 @@ select id as id
  ,null as account_type_name
  ,null as city_code_name
  ,null as certificate_type_name
- ,case a.blood_type::int when 0 then '未知' when 1 then 'A型'when 2 then 'B型' when 3 then 'O型' when 4 then 'AB型' when 9 then '其他' end as blood_type_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case a.blood_type::int when 0 then '未知' when 1 then 'a型'when 2 then 'b型' when 3 then 'o型' when 4 then 'ab型' when 9 then '其他' end as blood_type_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_im_group_member_weixin a ;
  
 -- dwd_duowei_weixin_group
@@ -1667,7 +1810,7 @@ select id as id
  ,account as account
  ,data_flag as data_flag
  ,valid_flag as valid_flag
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_im_group_weixin a ;
  
 -- dwd_duowei_weixin_message
@@ -1676,13 +1819,13 @@ select id as id
  ,null as msgid
  ,2 as type_dm
  ,account as account
- ,GROUP_ACCOUNT as otherid
- ,GROUP_NAME as group_name
+ ,group_account as otherid
+ ,group_name as group_name
  ,content as message
- ,SENDER_ACCOUNT as senderid
- ,SENDER_NICKNAME as sendername
+ ,sender_account as senderid
+ ,sender_nickname as sendername
  ,send_time as createtime
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
  ,del_flag as del_flag
  ,null as remark
  ,take_time as client_date
@@ -1692,8 +1835,8 @@ select id as id
  ,data_flag as data_flag
  ,valid_flag as valid_flag
  ,'群组' as type_name
- ,case DIRECTION when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case direction when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_im_group_msg_weixin a
  union all
   select id as id
@@ -1707,7 +1850,7 @@ select id as id
  ,friend_account as senderid
  ,friend_nickname as sendername
  ,send_time as createtime
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
  ,del_flag as del_flag
  ,null as remark
  ,take_time as client_date
@@ -1717,8 +1860,8 @@ select id as id
  ,data_flag as data_flag
  ,valid_flag as valid_flag
  ,'好友' as type_name
- ,case DIRECTION when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case direction when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_im_friend_msg_qq a
  union all 
  select id as id
@@ -1732,7 +1875,7 @@ select id as id
  ,friend_account as senderid
  ,friend_nickname as sendername
  ,send_time as createtime
- ,case DIRECTION when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
+ ,case direction when 1 then '02' when 2 then '01' when 0 then '99' when 99 then '99' end as local_action_dm
  ,del_flag as del_flag
  ,null as remark
  ,take_time as client_date
@@ -1742,6 +1885,84 @@ select id as id
  ,data_flag as data_flag
  ,valid_flag as valid_flag
  ,'好友' as type_name
- ,case DIRECTION when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
- ,'I' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'YYYY-MM-DD'),'-01') dwd_batch,'02' dwd_source
+ ,case direction when 1 then '发送' when 2 then '接收' when 0 then '其他' when 99 then '其他' end as local_action_name
+ ,'i' dwd_op_type,null dwd_vmd5,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch,'02' dwd_source
  from kn_mf_dr_im_friend_msg_qq a;
+ 
+ 
+-- dwd_duowei_weixin_profile
+select id as id
+ ,collect_id as person_id
+ ,account as wechatid
+ ,null as nickname
+ ,null as password
+ ,sex as sexcode
+ ,face_id as photo
+ ,null as qq
+ ,mobile as rela_mp
+ ,email as email
+ ,null as region
+ ,signature as signature
+ ,last_login_time as logintime
+ ,del_flag as del_flag
+ ,null as remark
+ ,take_time as client_date
+ ,upload_time as server_date
+ ,null as sync_date
+ ,null as install_time
+ ,country as area
+ ,null as city_code_dm
+ ,telephone as fixed_phone
+ ,null as certificate_type_dm
+ ,null as certificate_no
+ ,age as age
+ ,address as postal_address
+ ,null as postal_code
+ ,occupation as occupation_name
+ ,blood_type as blood_type_dm
+ ,real_name as name
+ ,signature as sign_name
+ ,personal_desc
+ ,city as reg_city
+ ,school as graduateschool
+ ,null as zodiac
+ ,constellation 
+ ,birthday 
+ ,null as app_mac
+ ,data_flag
+ ,valid_flag
+ ,null as city_code_name
+ ,null as certificate_type_name
+ ,case blood_type::int when 0 then '未知' when 1 then 'a型'when 2 then 'b型' when 3 then 'o型' when 4 then 'ab型' when 9 then '其他' end as blood_type_name
+ ,'i' dwd_op_type
+ ,null dwd_vmd5
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
+ ,'02' dwd_source
+ from kn_mf_wx_friend a
+ 
+ 
+--dwd_duowei_wifi_access
+select id as id
+ ,collect_id as person_id
+ ,ssid as name
+ ,ap_mac as mac 
+ ,crypt_type as security
+ ,null as securityparams
+ ,null as ip
+ ,null as netgate
+ ,null as longitude
+ ,null latitude
+ ,null as altitide
+ ,create_time as connecttime
+ ,del_flag as del_flag
+ ,null as remark
+ ,take_time as client_date
+ ,upload_time as server_date
+ ,null as sync_date
+ ,data_flag as data_flag
+ ,valid_flag as valid_flag
+ ,'i' dwd_op_type
+ ,null dwd_vmd5
+ ,concat(to_char(now(),'yyyy-mm-dd'),'-01') dwd_batch
+ ,'02' dwd_source
+ from kn_mf_conn_wifi a;
